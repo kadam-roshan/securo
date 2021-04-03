@@ -10,7 +10,7 @@
     </appender>
 
     <appender name="Appender2" class="org.apache.log4j.FileAppender">
-        <param name="File" value="/logs/SpringMVC2.log"/>
+        <param name="File" value="${log.file.path}"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n"/>
         </layout>
