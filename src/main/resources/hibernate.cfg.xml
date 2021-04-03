@@ -7,8 +7,8 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3366/securo</property>
-        <property name="hibernate.connection.username"></property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.username">${db.user.name}</property>
+        <property name="hibernate.connection.password">${db.user.password}</property>
         <property name="hibernate.show_sql">true</property>
 
         <mapping class="org.hachiko.service.securo.model.Incident"/>
