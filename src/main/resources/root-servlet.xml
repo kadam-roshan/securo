@@ -10,6 +10,11 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <context:component-scan base-package="org.hachiko.service.securo"/>
+
+    <bean id="health" class="org.hachiko.service.securo.model.Health" scope="singleton">
+        <constructor-arg type="java.lang.String" value="OK"/>
+    </bean>
+
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
