@@ -2,10 +2,10 @@ package org.hachiko.service.securo.resource;
 
 import org.apache.log4j.Logger;
 import org.hachiko.service.securo.dao.IncidentDAOImpl;
+import org.hachiko.service.securo.dto.IncidentDTO;
 import org.hachiko.service.securo.model.Incident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +19,6 @@ public class IncidentResource implements IncidentResourceInterface {
     @Autowired
     private IncidentDAOImpl incidentDAO;
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Incident incidentGet(@PathVariable(name = "id") int id) {
         logger.info(String.format("%s", "Calling get incident"));
@@ -37,8 +35,6 @@ public class IncidentResource implements IncidentResourceInterface {
         return incident;
     }
 
-    @RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public List incidentsGet(@RequestParam(name = "country", required = false) String country) {
         logger.info(String.format("%s", "Calling get incidents"));
@@ -60,26 +56,20 @@ public class IncidentResource implements IncidentResourceInterface {
         return incidents;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public ResponseEntity<String> incidentPost(@RequestBody Incident incident) {
+    public ResponseEntity<String> incidentPost(@RequestBody IncidentDTO incident) {
         logger.info(String.format("%s", "Calling post incident"));
 
-        incidentDAO.saveIncident(incident);
+        incidentDAO.saveIncident(incident.getIncidentPOJO());
 
         return new ResponseEntity<>("Incident saved successfully", HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public void incidentPut(@RequestBody Incident incident) {
+    public void incidentPut(@RequestBody IncidentDTO incident) {
         logger.info(String.format("%s", "Calling put incident"));
     }
 
-    @RequestMapping(path = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public ResponseEntity<String> incidentDelete(@PathVariable(name = "id") int id) {
         logger.info(String.format("%s", "Calling delete incident"));
