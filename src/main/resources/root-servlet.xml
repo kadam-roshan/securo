@@ -21,4 +21,9 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <!-- swagger configuration -->
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <!-- swagger configuration -->
 </beans>
